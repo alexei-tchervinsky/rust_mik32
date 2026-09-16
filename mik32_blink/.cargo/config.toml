@@ -1,0 +1,13 @@
+[build]
+# Автоматически собирать под MIK32 Amur без постоянного указания ключа --target
+target = "riscv32im-unknown-none-elf"
+
+[target.riscv32im-unknown-none-elf]
+# Аргументы для линкера: использовать memory.x и вызывать сборщик мусора для неиспользуемого кода
+rustflags = [
+  "-C", "link-arg=-Tmemory.x",
+  "-C", "link-arg=-Tlink.x", # Предоставляется библиотекой riscv-rt
+]
+
+# Настройка утилиты для запуска (например, через cargo run)
+# runner = "riscv-openocd ..." # Можно раскомментировать, когда настроите программатор
